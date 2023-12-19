@@ -1,0 +1,21 @@
+@import "aside-header__container.css";
+@import "aside-menu__container.css";
+@import "aside-menu-list.css";
+@import "user_logo.css";
+
+@media (max-width: 767px) {
+  .aside-menu__container {
+    padding: 0;
+    transform: translateX(-100%);
+  }
+  .aside-menu-list {
+    /*opacity: 0;*/
+    transform: translateX(-100%);
+    /*display: none;*/
+  }
+  #mainContent{
+    position: relative;
+    width: 100%;
+    flex: 1 1 ;
+  }
+}

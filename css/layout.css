@@ -6,7 +6,8 @@
   justify-content: space-between;
   flex: 1
 }
-aside{
+.aside-menu__layout{
+  background: var(--primary-color);
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -30,7 +31,7 @@ aside{
 }
 
 @media (max-width: 767px) {
-  aside {
+  .aside-menu__layout {
     transform: translateX(-100%);
     min-width: 0;
     flex: 0 ;

@@ -9,7 +9,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 25px;
-  box-shadow: rgba(136, 136, 136, 0.35) 0 0 20px;
+  box-shadow:  rgba(136, 136, 136, 0.35) 2px 2px 20px;
   display: flex;
 }
 
