@@ -8,7 +8,7 @@ module.exports = merge(common, {
   mode: 'production',
   output: {
     filename: 'bundle.js',
-    path: resolve(__dirname, 'public'), // change 'dist' to 'public'
+    path: resolve(__dirname, 'docs'),
   },
   plugins: [
     new HtmlWebpackPlugin({
