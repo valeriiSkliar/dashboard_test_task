@@ -12,7 +12,7 @@
    ========================================================================== */
 @import "variables.css";
 @import "aside/aside.css";
-@import "./allCustomers.css";
+@import "main_content/all-customers-table.css";
 @import "./effects.css";
 @import "./layout.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
@@ -29,6 +29,7 @@ html {
   height: fit-content;
 }
 body{
+  overflow-y: hidden;
   font-family: 'Poppins', serif;
   /*width: fit-content;*/
   height: 100vh;

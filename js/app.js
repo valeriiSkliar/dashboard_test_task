@@ -1,15 +1,18 @@
 import {gsap} from 'gsap';
 import {
-  animateMenuItemArrowMouseEnter, animateMenuItemArrowMouseLeave,
+  animateElementTap,
+  animateMenuItemArrowMouseEnter,
+  animateMenuItemArrowMouseLeave,
   animateMenuItemIconMouseEnter,
   animateMenuItemIconMouseLeave,
   animateMenuItemTextMouseEnter,
-  animateMenuItemTextMouseLeave
+  animateMenuItemTextMouseLeave,
 } from './functions';
-const menuItem = document.querySelectorAll('.menu-item');
-const userContainer = document.querySelector('.user__container');
+import {resizeObserver} from "./resizeObserver";
+import {asideMenu, mainContent, menuItem, overlay, toggleBtn, userContainer} from "./variables";
+resizeObserver.observe(document.body)
 menuItem.forEach((menuItem) => {
-  menuItem.addEventListener('mouseenter', function({target}) {
+  menuItem.addEventListener('mouseenter', function ({target}) {
     gsap.killTweensOf(this);
     gsap.to(this, {
       scale: 1.05,
@@ -23,7 +26,7 @@ menuItem.forEach((menuItem) => {
 
     }
   });
-  menuItem.addEventListener('mouseleave', function({target}) {
+  menuItem.addEventListener('mouseleave', function ({target}) {
     gsap.killTweensOf(this);
     gsap.to(this, {
       scale: 1.0,
@@ -36,37 +39,33 @@ menuItem.forEach((menuItem) => {
       animateMenuItemArrowMouseLeave(target);
     }
   });
-  menuItem.addEventListener('click', function({target}) {
+  menuItem.addEventListener('click', function ({currentTarget}) {
     gsap.killTweensOf(this);
-    gsap.fromTo(this,
-      {
-        scale: 0.95,
-        duration: 0.3,
-        // background: '#433C3A',
-      },
-      {
-        scale: 1.05,
-        duration: 0.3,
-        // background: 'transparent',
-        // delay: 0.3,
-      });
-    // if (target) {
-    //   animateMenuItemTextOnClick(target);
-    //   animateMenuItemIconOnClick(target);
-    //   animateMenuItemArrowOnClick(target);
-    // }
+    animateElementTap(currentTarget);
   });
+  menuItem.addEventListener('touchstart', function ({currentTarget}) {
+    gsap.killTweensOf(this);
+    animateElementTap(currentTarget);
+  });
+  menuItem.addEventListener('touchend', function ({currentTarget}) {
+    gsap.killTweensOf(this);
+    animateElementTap(currentTarget);
+  });
+
 })
-userContainer.addEventListener('mouseenter', function() {
+userContainer.addEventListener('click', function ({currentTarget}) {
+  gsap.killTweensOf(this);
+  animateElementTap(currentTarget)
+});
+userContainer.addEventListener('mouseenter', function () {
   gsap.killTweensOf(this);
   gsap.to(this, {
-    // transform: "translate(50%,50%)",
     paddingLeft: '2rem',
     border: "1px solid rgba(145, 151, 179, 0.5)",
-    duration:0.2
+    duration: 0.2
   });
 });
-userContainer.addEventListener('mouseleave', function() {
+userContainer.addEventListener('mouseleave', function () {
   gsap.killTweensOf(this);
   gsap.to(this, {
     // transform: "translate(0,0)",
@@ -74,3 +73,57 @@ userContainer.addEventListener('mouseleave', function() {
     border: "1px solid rgba(145, 151, 179, 0.01)",
   });
 });
+toggleBtn.addEventListener('click', function () {
+  console.log('toggle' + window.isMenuClosed.value)
+  if (window.isMenuClosed.value) {
+    gsap.to(asideMenu, {
+      position: 'absolute',
+      zIndex: 8000,
+      x: '0%',
+      duration: 0.2,
+      flex: '1 2',
+      minWidth: '200px',
+      opacity: 1,
+    });
+    gsap.fromTo(toggleBtn, {
+        rotateX: '180deg',
+        left: '-1rem',
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        rotateX: '0',
+        left: 'calc(308px - 2rem)',
+        // position:'absolute',
+        zIndex: 9999,
+      })
+    gsap.to(overlay, {
+      visibility: 'visible',
+      opacity: 1,
+      duration: 0.1,
+    });
+  }
+  if (!window.isMenuClosed.value) {
+    gsap.to(asideMenu, {
+      x: '-150%',
+      duration: 0.2,
+      flex: '0',
+      minWidth: '0',
+      opacity: 0,
+    });
+    gsap.to(mainContent, {width: '100%', duration: 0.2});
+    gsap.to(toggleBtn, {
+      rotateX: '180deg',
+      left: '-1rem',
+    });
+
+    gsap.to(overlay, {
+      visibility: 'hidden',
+      opacity: 0,
+      duration: 0.2,
+    });
+  }
+  window.isMenuClosed.value = !window.isMenuClosed.value;
+});
+
+
