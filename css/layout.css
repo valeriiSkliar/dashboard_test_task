@@ -1,4 +1,4 @@
-#main{
+#main {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -6,7 +6,8 @@
   justify-content: space-between;
   flex: 1
 }
-.aside-menu__layout{
+
+.aside-menu__layout {
   background: var(--primary-color);
   display: flex;
   flex-direction: column;
@@ -19,27 +20,32 @@
   width: 100%;
   max-width: 306px;
   min-width: 200px;
-  flex: 1 2 ;
+  flex: 1 2;
   height: 100%;
   transition: all 0.3s;
   border-right: 2px solid rgba(128, 128, 128, 0.15);
 }
-#mainContent{
+
+#mainContent {
   position: relative;
-  overflow-y: hidden;
-  flex: 2 1 ;
+  overflow-y: clip;
+  /*background: #5932EA;*/
+  display: flex;
+  flex-direction: column;
+  flex: 2 1;
 }
 
 @media (max-width: 767px) {
   .aside-menu__layout {
     transform: translateX(-100%);
     min-width: 0;
-    flex: 0 ;
+    flex: 0;
   }
-  #mainContent{
+
+  #mainContent {
     position: relative;
     width: 100%;
-    flex: 1 1 ;
+    flex: 1 1;
   }
 }
 

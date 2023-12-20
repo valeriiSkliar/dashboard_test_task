@@ -22,6 +22,7 @@
   text-decoration: none;
   color: var(--text-color);
   font-family: 'Poppins', serif;
+  /*border: 1px solid red;*/
 }
 html {
   font-size: 1em;
@@ -29,11 +30,8 @@ html {
   height: fit-content;
 }
 body{
-  overflow-y: hidden;
   font-family: 'Poppins', serif;
-  /*width: fit-content;*/
   height: 100vh;
-  /*background: #888888;*/
   display: flex;
   flex-direction: column;
 }
