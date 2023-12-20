@@ -3,6 +3,7 @@ export const mainContent = document.getElementById('mainContent');
 export const toggleBtn = document.getElementById('toggleBtn');
 export const menuItem = document.querySelectorAll('.menu-item');
 export const statusButtons = document.querySelectorAll('td[data-label="Status"] button');
+export const paginatorButtons = document.querySelectorAll('.paginator-list li button');
 export const userContainer = document.querySelector('.user__container');
 export const overlay = document.getElementById('overlay');
 

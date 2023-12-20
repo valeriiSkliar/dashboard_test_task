@@ -1,0 +1,28 @@
+.user__container {
+  margin: auto 0 0;
+  /*position: sticky;*/
+  /*bottom: 0;*/
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  /*background: #5932EA;*/
+  max-height: 2rem;
+  border-radius: 15px;
+  border: 1px solid rgba(145, 151, 179, 0.01);
+  cursor: pointer;
+  user-select: none;
+}
+.user-avatar .user-avatar_img{
+  border-radius: 50%;
+  max-width: 42px;
+}
+.user-info_name{
+  color: black;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.user-info_profession {
+  font-size: 0.8rem;
+}

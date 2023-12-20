@@ -1,0 +1,25 @@
+@import "aside-menu__container.css";
+@import "aside-header__container.css";
+@import "aside-menu-list.css";
+@import "user_logo.css";
+
+@media (max-width: 767px) {
+  aside {
+    position: absolute;
+  }
+  /*.aside-header__container, .aside-menu__container, .user__container {*/
+  /*  padding: 0;*/
+  /*  transform: translateX(-100%);*/
+  /*  opacity: 0;*/
+  /*}*/
+  /*.aside-menu-list {*/
+  /*  !*opacity: 0;*!*/
+  /*  transform: translateX(-100%);*/
+  /*  !*display: none;*!*/
+  /*}*/
+  #mainContent{
+    position: relative;
+    width: 100%;
+    flex: 1 1 ;
+  }
+}

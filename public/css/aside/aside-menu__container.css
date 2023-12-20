@@ -1,0 +1,11 @@
+.aside-menu__container {
+  position: relative;
+  padding: 2rem 1rem;
+  display: flex;
+  gap: 3rem;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

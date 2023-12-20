@@ -11,7 +11,16 @@ import {
   animateMenuItemTextMouseLeave, statusToggleButton,
 } from './functions';
 import {resizeObserver} from "./resizeObserver";
-import {asideMenu, mainContent, menuItem, overlay, statusButtons, toggleBtn, userContainer} from "./variables";
+import {
+  asideMenu,
+  mainContent,
+  menuItem,
+  overlay,
+  paginatorButtons,
+  statusButtons,
+  toggleBtn,
+  userContainer
+} from "./variables";
 resizeObserver.observe(document.body)
 menuItem.forEach((menuItem) => {
   menuItem.addEventListener('mouseenter', function ({target}) {
@@ -80,7 +89,6 @@ userContainer.addEventListener('mouseleave', function () {
   });
 });
 toggleBtn.addEventListener('click', function () {
-  console.log('toggle' + window.isMenuClosed.value)
   if (window.isMenuClosed.value) {
     gsap.to(asideMenu, {
       position: 'absolute',
@@ -133,5 +141,8 @@ toggleBtn.addEventListener('click', function () {
 });
 statusButtons.forEach((button) => {
   button.addEventListener('click', statusToggleButton)
+})
+paginatorButtons.forEach((button) => {
+  button.addEventListener('click', ({currentTarget}) => animateElementTap(currentTarget))
 })
 
