@@ -1,6 +1,11 @@
 import {gsap} from 'gsap';
 import {asideMenu, mainContent, overlay, toggleBtn} from "./variables";
 
+export function statusToggleButton({currentTarget}) {
+  currentTarget.classList.toggle('active');
+  currentTarget.classList.toggle('inactive');
+  animateElementTap(currentTarget);
+}
 export function animateMenuItemIconMouseEnter(target) {
   const iconSVG = target.querySelector(".menu-item__icon");
   if (iconSVG) {
@@ -17,7 +22,6 @@ export function animateMenuItemIconMouseEnter(target) {
     });
   }
 }
-
 export function animateMenuItemIconMouseLeave(target) {
   const iconSVG = target.querySelector(".menu-item__icon");
   if (iconSVG) {
@@ -36,7 +40,6 @@ export function animateMenuItemIconMouseLeave(target) {
   });
 
 }
-
 export function animateMenuItemArrowMouseEnter(target) {
   const arrowSVG = target.querySelector(".menu-item__arrow");
   if (arrowSVG) {
@@ -55,7 +58,6 @@ export function animateMenuItemArrowMouseEnter(target) {
     });
   }
 }
-
 export function animateMenuItemArrowMouseLeave(target) {
   const arrowSVG = target.querySelector(".menu-item__arrow");
   if (arrowSVG) {
@@ -72,7 +74,6 @@ export function animateMenuItemArrowMouseLeave(target) {
     });
   }
 }
-
 export function animateMenuItemTextMouseEnter(target) {
   const text = target.querySelector(".menu-item__text");
   gsap.killTweensOf(text);
@@ -80,7 +81,6 @@ export function animateMenuItemTextMouseEnter(target) {
     color: 'white'
   });
 }
-
 export function animateMenuItemTextMouseLeave(target) {
   const text = target.querySelector(".menu-item__text");
   gsap.killTweensOf(text);
@@ -88,7 +88,6 @@ export function animateMenuItemTextMouseLeave(target) {
     color: '#9197B3'
   });
 }
-
 export function animateElementTap(target) {
   gsap.to(target, {
     scale: .95,
@@ -112,7 +111,24 @@ export function animateElementTap(target) {
   //     duration: 0.3,
   //   });
 }
-
+export function animateElementTapForMobileDeviseTouchStart(target) {
+  gsap.to(target, {
+    background: '#5932EA',
+    duration: 0.04
+  })
+  animateMenuItemTextMouseEnter(target);
+  animateMenuItemIconMouseEnter(target);
+  animateElementTap(target);
+}
+export function animateElementTapForMobileDeviseTouchEnd(target) {
+  gsap.to(target, {
+    background: '#FFFFFF',
+    duration: 0.02
+  })
+  animateMenuItemTextMouseLeave(target);
+  animateMenuItemIconMouseLeave(target);
+  animateElementTap(target);
+}
 export const handleVisibility = (visible) => {
   if (visible) {
     gsap.to(asideMenu, {
@@ -157,3 +173,4 @@ export const handleVisibility = (visible) => {
 
   window.menuVisible.value = visible;
 }
+

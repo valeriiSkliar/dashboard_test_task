@@ -1,15 +1,17 @@
 import {gsap} from 'gsap';
 import {
   animateElementTap,
+  animateElementTapForMobileDeviseTouchEnd,
+  animateElementTapForMobileDeviseTouchStart,
   animateMenuItemArrowMouseEnter,
   animateMenuItemArrowMouseLeave,
   animateMenuItemIconMouseEnter,
   animateMenuItemIconMouseLeave,
   animateMenuItemTextMouseEnter,
-  animateMenuItemTextMouseLeave,
+  animateMenuItemTextMouseLeave, statusToggleButton,
 } from './functions';
 import {resizeObserver} from "./resizeObserver";
-import {asideMenu, mainContent, menuItem, overlay, toggleBtn, userContainer} from "./variables";
+import {asideMenu, mainContent, menuItem, overlay, statusButtons, toggleBtn, userContainer} from "./variables";
 resizeObserver.observe(document.body)
 menuItem.forEach((menuItem) => {
   menuItem.addEventListener('mouseenter', function ({target}) {
@@ -45,17 +47,21 @@ menuItem.forEach((menuItem) => {
   });
   menuItem.addEventListener('touchstart', function ({currentTarget}) {
     gsap.killTweensOf(this);
-    animateElementTap(currentTarget);
+    animateElementTapForMobileDeviseTouchStart(currentTarget);
   });
   menuItem.addEventListener('touchend', function ({currentTarget}) {
     gsap.killTweensOf(this);
-    animateElementTap(currentTarget);
+    animateElementTapForMobileDeviseTouchEnd(currentTarget);
   });
 
 })
-userContainer.addEventListener('click', function ({currentTarget}) {
+userContainer.addEventListener('click', function (event) {
   gsap.killTweensOf(this);
-  animateElementTap(currentTarget)
+  if (event.pointerType === 'touch') {
+    event.preventDefault();
+    return;
+  }
+  animateElementTap(event.currentTarget)
 });
 userContainer.addEventListener('mouseenter', function () {
   gsap.killTweensOf(this);
@@ -125,5 +131,7 @@ toggleBtn.addEventListener('click', function () {
   }
   window.isMenuClosed.value = !window.isMenuClosed.value;
 });
-
+statusButtons.forEach((button) => {
+  button.addEventListener('click', statusToggleButton)
+})
 

@@ -26,7 +26,7 @@
 }
 #mainContent{
   position: relative;
-
+  overflow-y: hidden;
   flex: 2 1 ;
 }
 
