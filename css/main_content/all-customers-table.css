@@ -40,6 +40,7 @@
 
 section.all-customers-table {
   width: 95%;
+  overflow-y: auto;
 }
 
 section.all-customers-table .all-customers-table-layout {
